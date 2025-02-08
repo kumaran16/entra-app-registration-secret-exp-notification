@@ -31,7 +31,6 @@ Sends an email notification to the application owner or default email address.
 - `AppName`: Application name.
 - `SecretOrCertName`: Secret or certificate name.
 - `SecretOrCertId`: Secret or certificate ID.
-- `SecretValuePreview`: Preview of the secret value (first three characters).
 - `EndDate`: Expiration date.
 
 #### `Send-SummaryEmail`
@@ -51,7 +50,8 @@ Sends a summary email of all expiring secrets and certificates.
     ```powershell
     $Applications = Get-MgApplication -All
 3. Initialize summary body:
-       $SummaryBody = @"
+   ```powershell
+   $SummaryBody = @"
     <html>
     <body>
     <p>Hello,</p>
@@ -64,34 +64,35 @@ Sends a summary email of all expiring secrets and certificates.
     <th>Expiration Date</th>
     </tr>
     "@
-4. Process each application:
+5. Process each application:
     Retrieve secrets and certificates.
     Check expiration dates.
     Send notifications to owners or default email.
     Add expiring secrets and certificates to the summary.
-5. Close the HTML table and body:
+6. Close the HTML table and body:
+     ```powershell
      $SummaryBody += @"
     </table>
     <p>Thank you,<br>Your IT Team</p>
     </body>
     </html>
     "@
- 6. Send the summary email:
+ 8. Send the summary email:
     ```powershell
     Send-SummaryEmail -To $DefaultEmail -Body $SummaryBody
 
-Usage
-      Open PowerShell with administrative privileges.
+**Usage**
+   Open PowerShell with administrative privileges.
       Run the script:
       ```powershell
          .\exp-secrets-certs-email.ps1
 
-Example
-   # Set default value for the number of days until expiration
-$DaysUntilExpiration = 30
-
-# Email configuration
+**Example**
          ```powershell
+         # Set default value for the number of days until expiration
+         $DaysUntilExpiration = 30
+         
+         # Email configuration
          $SmtpServer = "smtpserver.yourdomain.com"
          $From = "alerts@yourdomain.com"
          $DefaultEmail = "admin_shared_mailbox@yourdomain.com"
