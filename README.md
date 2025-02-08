@@ -81,14 +81,13 @@ Sends a summary email of all expiring secrets and certificates.
     ```powershell
     Send-SummaryEmail -To $DefaultEmail -Body $SummaryBody
 
-**Usage**
+**Usage and Example**
+   
    Open PowerShell with administrative privileges.
       Run the script:
-      ```powershell
+   
          .\exp-secrets-certs-email.ps1
 
-**Example**
-         ```powershell
          # Set default value for the number of days until expiration
          $DaysUntilExpiration = 30
          
@@ -99,11 +98,3 @@ Sends a summary email of all expiring secrets and certificates.
          
          # Run the script
          .\exp-secrets-certs-email.ps1
-
-
-**Notes**
-Ensure you have the necessary permissions to query Azure AD and send emails.
-Modify the script as needed to fit your environment and requirements.
-
-**License**
-This script is provided "as-is" without any warranty. Use at your own risk.
